@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="custome_pos.list">
+      <field name="name">custome_pos list</field>
+      <field name="model">custome_pos.custome_pos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="custome_pos.action_window">
+      <field name="name">custome_pos window</field>
+      <field name="res_model">custome_pos.custome_pos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="custome_pos.action_server">
+      <field name="name">custome_pos server</field>
+      <field name="model_id" ref="model_custome_pos_custome_pos"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="custome_pos" id="custome_pos.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="custome_pos.menu_1" parent="custome_pos.menu_root"/>
+    <menuitem name="Menu 2" id="custome_pos.menu_2" parent="custome_pos.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="custome_pos.menu_1_list" parent="custome_pos.menu_1"
+              action="custome_pos.action_window"/>
+    <menuitem name="Server to list" id="custome_pos" parent="custome_pos.menu_2"
+              action="custome_pos.action_server"/>
+    -->
+  </data>
+</odoo>
