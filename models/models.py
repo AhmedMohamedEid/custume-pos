@@ -2,14 +2,14 @@
 
 from odoo import models, fields, api
 
-# class custome_pos(models.Model):
-#     _name = 'custome_pos.custome_pos'
+class UserInherit(models.Model):
+    _inherit = 'res.users'
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+    pos_id = fields.Many2one(comodel_name="pos.config", string="Point of sale", required=False, )
+
+
+
+class PosConfigInherit(models.Model):
+    _inherit = 'pos.config'
+
+    user_ids = fields.One2many(comodel_name="res.users", inverse_name="pos_id", string="Users", required=False, )

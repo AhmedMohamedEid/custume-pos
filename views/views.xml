@@ -1,60 +1,44 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="custome_pos.list">
-      <field name="name">custome_pos list</field>
-      <field name="model">custome_pos.custome_pos</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="custome_pos.action_window">
-      <field name="name">custome_pos window</field>
-      <field name="res_model">custome_pos.custome_pos</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+    <!-- Inherit Form View to Modify it -->
+    <record id="res_user_form_inherit_pos_view" model="ir.ui.view">
+        <field name="name">res.user.form.inherit.pos</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="custome_pos.action_server">
-      <field name="name">custome_pos server</field>
-      <field name="model_id" ref="model_custome_pos_custome_pos"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+            <xpath expr="//field[@name='pos_security_pin']" position="after">
+                <!-- Add your fields or attributes here -->
+                <field name="pos_id"/>
+            </xpath>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="custome_pos" id="custome_pos.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="custome_pos.menu_1" parent="custome_pos.menu_root"/>
-    <menuitem name="Menu 2" id="custome_pos.menu_2" parent="custome_pos.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="custome_pos.menu_1_list" parent="custome_pos.menu_1"
-              action="custome_pos.action_window"/>
-    <menuitem name="Server to list" id="custome_pos" parent="custome_pos.menu_2"
-              action="custome_pos.action_server"/>
-    -->
+        </field>
+    </record>
+
+      <!-- Inherit Form View to Modify it -->
+      <record id="pos_config_add_user_in_pos_config_view" model="ir.ui.view">
+          <field name="name">pos.config.add.user.in.pos.config.view</field>
+          <field name="model">pos.config</field>
+          <field name="arch" type="xml">
+
+              <xpath expr="//sheet" position="inside">
+                  <group string="Users">
+                      <field name="user_ids" nolabel="1"/>
+                  </group>
+              </xpath>
+          </field>
+          <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+      </record>
+
+
+
+      <!--the Xml record can override in Kanban View Action and Add Domain record-->
+        <!--Inherit From Pos Action and Override on Kanban view action-->
+      <record id="point_of_sale.action_pos_config_kanban" model="ir.actions.act_window">
+        <field name="domain">[("user_ids.id","=",uid)]</field>
+      </record>
+
+
   </data>
 </odoo>
