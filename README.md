@@ -1,2 +1,2 @@
 # custume-pos
-Costume on pos Odoo
+Custume on pos Odoo
