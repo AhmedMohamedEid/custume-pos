@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "POS Custome",
+    'name': "POS Custom",
 
     'summary': """
 
